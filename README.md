@@ -18,7 +18,7 @@ const Validation = require('hero-validate');
 const rules = {
     name         : 'required|min:2|max:50',
     email        : "required|email",
-    password     : "required|min:6|max:100",
+    password     : "required|min:8|max:100",
 };
 /// custom message for your form
 Validation.setMessages({
@@ -29,37 +29,25 @@ Validation.setMessages({
     },
     required: 'required override message', /// default message of rule required not define field 
     min: 'validator got parameter :min and value :value' /// default message of rule min not define field 
-    ...
+    ....
 });
 
 /// you can setting locale for support 2 language : en - vi 
-Validation.setLocale(V.languages.vi)
+Validation.setLocale(Validation.languages.vi)
 
 const data = {
   name    : 'Trương Thanh Hùng Đẹp Trai',
-  email   : 'truongpham260620@gmail.com',
-  password: 'ahihi@123',
+  email   : 'truongpham260620gmail.com',
+  password: 'ahihi@1',
 };
 
-const result = Validator.validate( data,  rules );
+const result = Validation.validate( data,  rules );
+console.log(JSON.stringify(result))
+/// {"hasError":true,"errors":{"email":["email phải là mail hợp lệ"],"password":["password phải lớn hơn hoặc bằng 8."]}}
 
-// Get if validate returned error
-result.hasError; // Boolean
+result.isError('name', 'ruleName' ); // Boolean Get if given field has error, ruleName default null will get all
 
-// Get errors object
-result.errors; // Object
+result.getError('name', '-'); // will Get first error message of field or join error string by - character. Default join string error by `,`
 
-// Get if given field has error
-result.isError('name'); // Boolean
-
-// Get if given field has error of given validation rule
-result.isError('name', 'max'); // Boolean
-result.isError('name', 'mycustom'); // Boolean
-// Note: you cant get whether inline function passed validation or not
-
-// Get first validation error message of field
-result.getError('name', '-'); // will join error string by - character. Default join string error by `,`
-
-// Get all validation error messages of field
-result.getAllError('name', "|"); // will join error string by | character. Default join string error by `,`
+result.getAllError('name', "|"); //  will Get all error message of field or join error string by | character. Default join string error by `,`
 ```
