@@ -1,8 +1,8 @@
-import { messages, defaultMessage } from './messages';
+import { messages, defaultMessage, defaultLocale, languages } from './messages';
 import { methods } from './methods';
 import { parseScheme } from './Rule';
 
-export { setMessages, setDefaultMessage } from './messages';
+export { setMessages, setDefaultMessage, setLocale, languages } from './messages';
 export {
     setRuleSeparator,
     setRuleParamSeparator,
@@ -81,11 +81,17 @@ export function formatErrors(errors, failedRules) {
                 );
             }
         },
-        getError: function (paramName, getAll = true) {
+        getError: function (paramName, _join = ',', getAll = true) {
             if (!Array.isArray(errors[paramName]) || errors[paramName].length === 0) {
                 return '';
             }
-            return getAll ? errors[paramName].join(',') : errors[paramName][0];
+            return getAll ? errors[paramName].join(_join) : errors[paramName][0];
+        },
+        getAllError: function ( paramName, _join = ',' ) {
+            if (!Array.isArray(errors[paramName]) || errors[paramName].length === 0) {
+                return '';
+            }
+            return errors[paramName].join(_join)
         },
     };
 }
@@ -132,7 +138,7 @@ export function validate(data, scheme, callback) {
             if (typeof result === 'string') {
                 err = result;
             } else {
-                err = formatMessage(paramName, result, ruleName); /// to String object
+                err = formatMessage(paramName, result, ruleName); /// to String object => exa : paramName: name result : { min: 30 } ruleName min => message string kết quả: "Đây là min"
             }
 
             if (errors[paramName] === undefined) {
