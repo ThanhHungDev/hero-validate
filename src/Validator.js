@@ -50,6 +50,9 @@ export function formatMessage(name, params, ruleName) {
     }
 
     let message = messages[ruleName];
+    if( messages[name] !== undefined ){
+        message = messages[name];
+    }
     if( messages[name] !== undefined && messages[name][ruleName] !== undefined ){
         message = messages[name][ruleName];
     }
