@@ -1,1 +1,1 @@
-export * as default from './Demo';
+export * as default from './Validator';
