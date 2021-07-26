@@ -32,18 +32,8 @@ Validation.setMessages({
     ...
 });
 
-var V = require('./Validator');
-
-V.setMessages({
-  name: {
-      required: 'this is reqquire my custom :D',
-      min: ':name min error rule :min'
-  },
-  required: 'required override message',
-  min: 'validator got parameter :min and value :value'
-});
 /// you can setting locale for support 2 language : en - vi 
-V.setLocale(V.languages.vi)
+Validation.setLocale(V.languages.vi)
 
 const data = {
   name    : 'Trương Thanh Hùng Đẹp Trai',
@@ -51,10 +41,7 @@ const data = {
   password: 'ahihi@123',
 };
 
-const result = Validator.validate(
-  data,
-  rules,
-);
+const result = Validator.validate( data,  rules );
 
 // Get if validate returned error
 result.hasError; // Boolean
