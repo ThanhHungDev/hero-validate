@@ -1,4 +1,4 @@
-import { getValidationMethod as getValidator } from './methods';
+import { getValidationMethod as getValidator } from './Methods';
 
 const dontValidate = ['required', 'string', 'nullable', 'number'];
 

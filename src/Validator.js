@@ -1,8 +1,8 @@
-import { messages, defaultMessage, defaultLocale, languages } from './messages';
-import { methods } from './methods';
+import { messages, defaultMessage, defaultLocale, languages } from './Messages';
+import { methods } from './Methods';
 import { parseScheme } from './Rule';
 
-export { setMessages, setDefaultMessage, setLocale, languages } from './messages';
+export { setMessages, setDefaultMessage, setLocale, languages } from './Messages';
 export {
     setRuleSeparator,
     setRuleParamSeparator,
@@ -50,7 +50,7 @@ export function formatMessage(name, params, ruleName) {
     }
 
     let message = messages[ruleName];
-    if( messages[name] !== undefined ){
+    if( messages[name] !== undefined && typeof messages[name] == 'string'){
         message = messages[name];
     }
     if( messages[name] !== undefined && messages[name][ruleName] !== undefined ){
