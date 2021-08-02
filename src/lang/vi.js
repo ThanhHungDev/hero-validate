@@ -2,6 +2,8 @@ module.exports = {
     required     : ":name bắt buộc nhập.",
     min          : ":name phải lớn hơn hoặc bằng :min.",
     max          : ":name phải nhỏ hơn hoặc bằng :max.",
+    min_length    : ":name phải lớn hơn hoặc bằng :min Ký tự.",
+    max_length    : ":name phải nhỏ hơn hoặc bằng :max ký tự.",
     between      : ":name phải nằm trong khoảng :from và :to.",
     checked      : ":name phải được checked",
     array        : ":name phải là mảng",

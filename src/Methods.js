@@ -212,6 +212,30 @@ export let methods = {
 
     /**
      * @param value
+     * @param max
+     * @return {{max}|boolean}
+     */
+    max_length(value, max) {
+        if (typeof value === 'string') {
+            if (value.length <= max) return true;
+        }
+        return { max };
+    },
+
+    /**
+     * @param value
+     * @param min
+     * @return {{min}|boolean}
+     */
+    min_length(value, min) {
+        if (typeof value === 'string') {
+            if (value.length >= min) return true;
+        }
+        return { min };
+    },
+
+    /**
+     * @param value
      * @param param
      * @return {boolean|{value}}
      */

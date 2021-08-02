@@ -91,7 +91,7 @@ export let languages  = {
     // /**
     //  * lang for Japanese.
     //  */
-    // ja : "ja",
+    ja : "ja",
     // /**
     //  * lang for Georgian.
     //  */
@@ -197,10 +197,12 @@ export let defaultLocale = 'en';
  */
 import messageEN from "./lang/en"
 import messageVI from "./lang/vi"
+import messageJA from "./lang/ja"
 
 let LANG_MESS = []
 LANG_MESS[`${languages.en}`] = messageEN
 LANG_MESS[`${languages.vi}`] = messageVI
+LANG_MESS[`${languages.ja}`] = messageJA
 
 export let messages = LANG_MESS[`${languages.en}`]
 

@@ -16,14 +16,13 @@ export * as default from './Validator';
 // V.setLocale(V.languages.vi)
 
 // const data = {
-//     password: 'hungfff',
-//     confirm_password: "fdsfds",
-    
+//     password: 'hungff',
+//     confirm_password: "fdsfd",
 // }
 
 // /// create rule for your form
 // const rules = {
-//     password     : "required|min:7|max:100",
+//     password     : "required|min_length:7|max_length:100",
 //     confirm_password : {
 //         required: true,
 //         mycustom: function (value) {

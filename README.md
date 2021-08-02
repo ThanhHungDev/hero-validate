@@ -33,12 +33,14 @@ Validation.setMessages({
     ....
 });
 
-/// you can setting locale for support 2 language : en - vi 
+/// show all language support
+console.log(Validation.languages)
+/// you can setting locale for support 2 language : en - vi - ja
 Validation.setLocale(Validation.languages.vi)
 
 const data = {
   name    : 'Trương Thanh Hùng Đẹp Trai',
-  email   : 'truongpham260620gmail.com',
+  email   : 'thanhhungdevgmail.com',
   password: 'ahihi@1',
 };
 
@@ -83,7 +85,7 @@ will return obect error, if you need check hasError `result.hasError`
 import Validation from 'hero-validate'
 /// create rule for your form
 const rules = {
-    password     : "required|min:7|max:100",
+    password     : "required|min_length:7|max_length:100",
     confirm_password : {
         required: true,
         mycustom: function (value) {
@@ -101,17 +103,17 @@ const message = {
 }
 const data = {
     password: 'hungfff',
-    confirm_password: "fdsfds",
+    confirm_password: "fdsfds", /// name underscore
 }
 /// custom message for your form
 Validation.setMessages(message);
-const result = Validation.validate( data,  rules );123213123sdfdsfsdfsd
+const result = Validation.validate( data,  rules );
 ```
 - Example 2 - create function validate public
 
 ```js
 Validation.extend(
-    'validate_address',
+    'validate_address', /// underscore
     function (value, arg1, arg2, ...rest) {
         
         if (",#-/ !@$%^*(){}|[]\\".indexOf(value) >= 0) {
@@ -132,6 +134,8 @@ Validation.extend(
 ```
 
 ## React Validation
+
+demo code sanbox : https://codesandbox.io/embed/sweet-cache-x6keg?fontsize=14&hidenavigation=1&theme=dark
 
 - Example
 
@@ -494,6 +498,38 @@ min(value, min) {
     } else if (typeof value !== undefined) {
         if (value >= min) return true;
     }
+    return { min };
+},
+
+/**
+ * Returns error if given value is less than given parameter  -- compares string length
+ * @message Parameter cant be greater than Value
+ * @example ...'|max_length:20|'
+ * @param value
+ * @param max
+ * @return {{max}|boolean}
+ */
+max_length(value, max) {
+    if (typeof value === 'string') {
+        if (value.length <= max) return true;
+    }
+    
+    return { max };
+},
+
+/**
+ * Returns error if given value is greater than given parameter -- compares string length
+ * @message Parameter cant be less than Value
+ * @example ...'|min_length:20|'
+ * @param value
+ * @param min
+ * @return {{min}|boolean}
+ */
+min_length(value, min) {
+    if (typeof value === 'string') {
+        if (value.length >= min) return true;
+    }
+    
     return { min };
 },
 
