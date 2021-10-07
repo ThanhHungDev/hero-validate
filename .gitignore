@@ -2,4 +2,3 @@
 /node_modules
 .vscode/launch.json
 *.DS_Store
-*.json
